@@ -1,0 +1,178 @@
+{
+  "table" : "rosenfeld_qdPCR37K_layout",
+  "data" : 
+  [
+    {
+      "sheet": "Layout",
+      "row": 13,
+      "layout" : 
+      {
+        "type" : "qdPCR37K",
+        "expid" : "NOT_SET",
+        "column" : "expid"
+      },
+      "constraint":
+      [
+        {
+          "type" : "FK",
+          "column" : "sampleName",
+          "foreign_table" : "rosenfeld_Sample",
+          "foreign_column" : "sampleName"
+        },
+        {
+          "type" : "column_length",
+          "column" : "panelNumber",
+          "value" : 48
+        },
+        {
+          "type" : "check_elements_match",
+          "column" : "B",
+          "row" : 2
+        }
+      ],
+      "modify" :
+      [
+        {
+          "action" : "to_str",
+          "column" : "panelNumber"
+        },
+        {
+          "action" : "to_str",
+          "column" : "spunPlasmaVolume_ml"
+        },
+        {
+          "action" : "to_str",
+          "column" : "elutionVolume_ul"
+        },
+        {
+          "action" : "to_str",
+          "column" : "enrichmentRatio"
+        },
+        {
+          "action" : "to_str",
+          "column" : "cnaVolume_ul"
+        },
+        {
+          "action" : "to_str",
+          "column" : "okForAnalysis"
+        }
+      ],
+      "data": 
+      [
+        {
+          "column": "A",
+          "title": "panelNumber",
+          "name": "panelNumber",
+          "not_null" : true
+        },
+        {
+          "column": "B",
+          "title": "panelTitle",
+          "name": "panelTitle",
+          "not_null" : true
+        },
+        {
+          "column" : "C",
+          "title" : "assayName",
+          "name" : "assayName",
+          "not_null" : true,
+          "validation" :
+          {
+            "table" : "rosenfeld_Assay",
+            "name" : "assayName"
+          }
+        },
+        {
+          "column" : "D",
+          "title" : "sampleName",
+          "name" : "sampleName",
+          "not_null" : true
+        },
+        {
+          "column" : "E",
+          "title" : "spikeSampleName",
+          "name" : "spikeSampleName",
+          "not_null" : true
+        },
+        {
+          "column" : "F",
+          "title" : "spikeBackgroundSample",
+          "name" : "spikeBackgroundSample"
+        },
+        {
+          "column" : "G",
+          "title" : "ratioBackgroundSpike",
+          "name" : "ratioBackgroundSpike"
+        },
+        {
+          "column" : "H",
+          "title" : "spunPlasmaVolume_ml",
+          "name" : "spunPlasmaVolume_ml",
+          "not_null" : true,
+          "allowed_null" : "X"
+        },
+        {
+          "column" : "I",
+          "title" : "cnaKit",
+          "name" : "cnaKit",
+          "not_null" : true
+        },
+        {
+          "column" : "J",
+          "title" : "elutionVolume_ul",
+          "name" : "elutionVolume_ul",
+          "not_null" : true,
+          "allowed_null" : "X"
+        },
+        {
+          "column" : "K",
+          "title" : "cyclesThroughColumn",
+          "name" : "cyclesThroughColumn"
+        },
+        {
+          "column" : "L",
+          "title" : "waterbath",
+          "name" : "waterbath"
+        },
+        {
+          "column" : "M",
+          "title" : "enrichmentRatio",
+          "name" : "enrichmentRatio"
+        },
+        {
+          "column" : "N",
+          "title" : "enrichmentMethod",
+          "name" : "enrichmentMethod"
+        },
+        {
+          "column" : "O",
+          "title" : "cnaVolume_ul",
+          "name" : "cnaVolume_ul",
+          "not_null" : true,
+          "allowed_null" : "X"
+        },
+        {
+          "column" : "P",
+          "title" : "heatingTemp_C",
+          "name" : "heatingTemp_C"
+        },
+        {
+          "column" : "Q",
+          "title" : "heatingTime_sec",
+          "name" : "heatingTime_sec"
+        },
+        {
+          "column" : "R",
+          "title" : "comments",
+          "name" : "comments"
+        },
+        {
+          "column" : "S",
+          "title" : "okForAnalysis",
+          "name" : "okForAnalysis",
+          "not_null" : true
+        }
+      ]
+    }
+  ]
+}
