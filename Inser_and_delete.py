@@ -19,14 +19,14 @@ files = input_list.iloc[:, 1]
 # Correction Type
 file_type = input_list.iloc[:, 0]
 
-file_Path = "/Volumes/files/research/nrlab/group/group_folders/GROUP/Hackathon/LAYOUT/copy_LAYOUTS/ "
+file_Path = "/Volumes/files/research/nrlab/group/group_folders/GROUP/Hackathon/LAYOUT/copy_LAYOUTS/"
 
 for index, file in enumerate(files):
     file_numb = file[3:5]
     directory_numb = floor(np.int(file_numb)/5)*5
 
-    f = pd.read_excel(file_Path + "EXP" + np.str(directory_numb) + "/" +
-                      file + "/LAYOUT/" + file + "_layout.xlsx")  # file_Path + "LAYOUT" + file
+    # file_Path + "LAYOUT" + file
+    f = pd.read_excel(file_Path + file + "_layout.xlsx")
 
     print("/n doing file" + file)
 
@@ -51,8 +51,7 @@ for index, file in enumerate(files):
     if f.columns[2] == 'Unnamed_2':
         f = f.rename(column={'Unnamed: 2': 'further_comments'})
 
-    f.to_excel(file_Path + "EXP" + np.str(directory_numb) + "/" +
-               file + "/LAYOUT/" + file + "_layout.xlsx", index=False)
+    f.to_excel(file_Path + file + "_layout.xlsx", index=False)
 
     #    if index<79:
     #   f = pd.read_excel(file_Path + "EXP"+ np.str(directory_numb) + "/" + file + "/LAYOUT/" + file + "_layout.xlsx") #file_Path + "LAYOUT" + file
