@@ -20,22 +20,12 @@ file_Path = '/Volumes/nrlab/group/group_folders/GROUP/Hackathon/LAYOUT/copy_LAYO
 
 for file in unique_files:
     f=pd.read_excel(file_Path + file + '_layout.xlsx', engine='openpyxl')
+    print("reading in file " + file)
     
-    local_error_list = error_list[files==file]
-    local_correction_list = correct_list[files==file]
-    
-    row_list = range(len(f))
-    
-    for index, sample_name in enumerate(local_error_list):
+    f = f.replace(error_list[files==file].tolist(), correct_list[files==file].tolist())
         
-        
-            
-        f = f.replace(sample_name, local_correction_list[index])
-        
-
-    
 #    f = f.replace(error_list[files==file],correct_list[files==file])
-    f.to_excel(file_Path + 'file'+ '_layout.xlsx', index=False)
+    f.to_excel(file_Path + file + '_layout.xlsx', index=False)
     
     
     
