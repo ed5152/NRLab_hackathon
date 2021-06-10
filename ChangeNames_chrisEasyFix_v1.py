@@ -9,7 +9,7 @@ Created on Fri Jun  4 17:09:22 2021
 import pandas as pd
 
 inputfile_path = "/Volumes/nrlab/group/group_folders/GROUP/Hackathon/Chris_sampleName_replacement_01/"
-input_info = pd.read_csv(inputfile_path + 'clinSample_EASY_FIX_replacement.csv')
+input_info = pd.read_csv(inputfile_path + 'clinSample_HARD_fix_new_Sample.csv')
 
 files = input_info.iloc[:,0]
 error_list = input_info.iloc[:,1]
