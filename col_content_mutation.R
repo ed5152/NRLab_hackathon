@@ -22,11 +22,16 @@ for (file in xy.df) file.copy(file, "/Volumes/files/research/nrlab/group/group_f
 outputpath <- "/Volumes/files/research/nrlab/group/group_folders/GROUP/Hackathon/LAYOUT/copy_LAYOUTS/haichao4"
 
 
+
 target_fullname<- 
     list.files(path = outputpath, 
+               pattern = "^EXP.*\\.xlsx",
                full.names = TRUE)
+
 target_fullname_list <- as.list(target_fullname)
 names(target_fullname_list)  <- target_fullname
+
+#target_fullname_list <- list("/Users/wang04/Documents/phd_projects/hackthon/EXP1817_JW_layout.xlsx" = "/Users/wang04/Documents/phd_projects/hackthon/EXP1817_JW_layout.xlsx")
 
 
 ##############################################################################################
@@ -42,6 +47,7 @@ f <- function(x) {
         file <- file %>% dplyr::mutate( 
             sequencer = case_when(
                 .data$sequencer == "HiSeq_4500" ~"HiSeq_4000",
+                .data$sequencer == "HiSeq 4000" ~"HiSeq_4000",
                 .data$sequencer == "HiSeq_4501" ~"HiSeq_4000",
                 .data$sequencer == "HiSeq_4502" ~"HiSeq_4000",
                 .data$sequencer == "HiSeq_4503" ~"HiSeq_4000",
@@ -65,7 +71,10 @@ f <- function(x) {
                 .data$sequencer == "HiSeq_2502" ~"HiSeq_2500",
                 .data$sequencer == "HiSeq_2503" ~"HiSeq_2500",
                 .data$sequencer == "HiSeq_2504" ~"HiSeq_2500",
+                .data$sequencer == "Miseq_Express" ~"MiSeq_Express",
+                .data$sequencer == "NovaSeq" ~"NovaSeq_6000_S1",
                 .data$sequencer == "HiSeq_2505" ~"HiSeq_2500",
+                is.na(.data$sequencer) ~ "Not known (historic)",
                 TRUE ~ as.character(.data$sequencer)))
         
         
@@ -80,11 +89,15 @@ f <- function(x) {
             library_prep = case_when(
                 .data$library_prep == "Agilent_SureSelectXT" ~ "Agilent_XT",
                 .data$library_prep == "SureSelectXT" ~ "Agilent_XT",
+                .data$library_prep == "SureSelectXT HS" ~ "Agilent_XT",
                 .data$library_prep == "Agilent XTHS" ~ "Agilent_XTHS",
                 .data$library_prep == "XTHS" ~ "Agilent_XTHS",
                 .data$library_prep == "Agilent_SureSelectXTHS" ~ "Agilent_XTHS",
                 .data$library_prep == "SMART" ~ "DNA_SMART_ChIP_seq",
+                .data$library_prep == "SMART ChIP Seq" ~ "DNA_SMART_ChIP_seq",
+                .data$library_prep == "DNA Smart Chip Seq" ~ "DNA_SMART_ChIP_seq",
                 .data$library_prep == "Truplex_DNA_seq" ~ "Thruplex_DNA_seq",
+                .data$library_prep == " Thruplex_DNA_seq" ~ "Thruplex_DNA_seq",
                 .data$library_prep == "Thruplex_DNA_Seq" ~ "Thruplex_DNA_seq",
                 .data$library_prep == "Truplex_DNA_Seq" ~ "Thruplex_DNA_seq",
                 .data$library_prep == "Thruplex_dna_seq" ~ "Thruplex_DNA_seq",
@@ -117,6 +130,8 @@ f <- function(x) {
                                          .data$capture_protocol =="SureSelect_Target_Enrichment_System_for_Illumina_Paired_end" ~ "Agilent_XT",
                                          .data$capture_protocol =="Illumina_TruSeq_Exome" ~ "Illumina_TruSeq_exome",
                                          .data$capture_protocol =="Illumina_Truseq_Exome" ~ "Illumina_TruSeq_exome",
+                                         .data$capture_protocol =="Illumina_TruSeq_Exome Library Prep" ~ "Illumina_TruSeq_exome",
+                                         .data$capture_protocol =="TruSeq Exome Library Prep" ~ "Illumina_TruSeq_exome",
                                          .data$capture_protocol =="Agilent_SureSelectXT" ~ "Agilent_XT",
                                          .data$capture_protocol =="Agilent_sureSelect_XT_custom_capture" ~ "Agilent_XT",
                                          .data$capture_protocol =="Agilent_SureSelectXT_Custom" ~ "Agilent_XT",
@@ -132,7 +147,7 @@ f <- function(x) {
                                          .data$capture_protocol =="Agilent_XTHS_Custom_Panel_renal" ~ "Agilent_XTHS",
                                          .data$capture_protocol =="Agilent_XTHS_C0" ~ "Agilent_XTHS",
                                          .data$capture_protocol =="Agilent XTHS LUCID batch2" ~ "Agilent_XTHS",
-                                         .data$capture_protocol =="" ~ "Not known (historic)",
+                                         is.na(.data$capture_protocol) ~ "Not known (historic)",
                                          .data$capture_protocol ==" " ~ "Not known (historic)",
                                          TRUE ~ as.character(.data$capture_protocol)))
     }
@@ -146,7 +161,7 @@ f <- function(x) {
                 .data$quantification_method == "Qbit" ~ "Qubit",
                 .data$quantification_method == "qdPCR_37_K" ~ "Qubit",
                 .data$quantification_method == "qubit" ~ "Qubit",
-                .data$quantification_method == "" ~ "Not known (historic)",
+                is.na(.data$quantification_method) ~ "Not known (historic)",
                 .data$quantification_method == " " ~ "Not known (historic)",
                 TRUE ~ as.character(.data$quantification_method)))}
     
@@ -154,6 +169,7 @@ f <- function(x) {
         file <- file %>% dplyr::mutate( 
             data_type = case_when(
                 .data$data_type == "Tag-seq" ~ "TagSeq",
+                is.na(.data$data_type) ~ "Not known (historic)",
                 TRUE ~ as.character(.data$data_type)))}
     
     
@@ -167,12 +183,17 @@ f <- function(x) {
 
 
 ##############################################################################################
+
 strange_file <- "/Volumes/files/research/nrlab/group/group_folders/GROUP/Hackathon/LAYOUT/copy_LAYOUTS/haichao4/EXP1846_KH_layout.xlsx"
 
 target_fullname_list2 <- target_fullname_list[target_fullname_list != strange_file]
 
 lapply(target_fullname_list2, f)
 
+file1 <- "/Volumes/files/research/nrlab/group/group_folders/GROUP/Hackathon/LAYOUT/copy_LAYOUTS/haichao4/EXP2831_MKT_ASC_layout.xlsx"
+target_fullname_list <- target_fullname_list[target_fullname_list != file1]
+
+lapply(target_fullname_list, f)
 
 ##############################################################################################
 
