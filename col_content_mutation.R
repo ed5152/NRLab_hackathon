@@ -131,6 +131,7 @@ f <- function(x) {
                                          .data$capture_protocol =="Illumina_TruSeq_Exome" ~ "Illumina_TruSeq_exome",
                                          .data$capture_protocol =="Illumina_Truseq_Exome" ~ "Illumina_TruSeq_exome",
                                          .data$capture_protocol =="Illumina_TruSeq_Exome Library Prep" ~ "Illumina_TruSeq_exome",
+                                         .data$capture_protocol =="TruSeq Exome Library Prep " ~ "Illumina_TruSeq_exome",
                                          .data$capture_protocol =="TruSeq Exome Library Prep" ~ "Illumina_TruSeq_exome",
                                          .data$capture_protocol =="Agilent_SureSelectXT" ~ "Agilent_XT",
                                          .data$capture_protocol =="Agilent_sureSelect_XT_custom_capture" ~ "Agilent_XT",
@@ -190,9 +191,15 @@ target_fullname_list2 <- target_fullname_list[target_fullname_list != strange_fi
 
 lapply(target_fullname_list2, f)
 
-file1 <- "/Volumes/files/research/nrlab/group/group_folders/GROUP/Hackathon/LAYOUT/copy_LAYOUTS/haichao4/EXP2831_MKT_ASC_layout.xlsx"
-target_fullname_list <- target_fullname_list[target_fullname_list != file1]
+file1 <- "/Volumes/files/research/nrlab/group/group_folders/GROUP/Hackathon/LAYOUT/copy_LAYOUTS/haichao4/EXP2557_KH_layout.xlsx"
 
+
+target_fullname_list <- target_fullname_list[target_fullname_list != file1]
+target_fullname_list <- target_fullname_list[208:length(target_fullname_list)]
+
+length(target_fullname_list)
+
+target_fullname_list = target_fullname_list[208:length(target_fullname_list)]
 lapply(target_fullname_list, f)
 
 ##############################################################################################
